@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'QuestionController@index');
+Route::get('/create', 'QuestionController@create');
+Route::post('/', 'QuestionController@store');
+
+Auth::routes();
+
+Route::get('/{question}', 'QuestionController@show');
