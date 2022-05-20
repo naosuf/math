@@ -18,7 +18,8 @@ class CreateQuestionsTable extends Migration
             $table->string('title');
             $table->string('body');
             $table->integer('user_id')->unsigned();
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
+            $table->timestamps(0);
         });
     }
 

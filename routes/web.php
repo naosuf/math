@@ -11,10 +11,21 @@
 |
 */
 
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/create', 'QuestionController@create');
+    Route::post('/question', 'QuestionController@store');
+});
+
+#コントローラーごとに分ける
+#URLが短い順で並べる
 Route::get('/', 'QuestionController@index');
-Route::get('/create', 'QuestionController@create');
-Route::post('/', 'QuestionController@store');
+#Route::get('/question',);
+Route::get('/question/{question}', 'QuestionController@show');
+
+
+Route::post('/answer/', 'AnswerController@store');
+
 
 Auth::routes();
 
-Route::get('/{question}', 'QuestionController@show');
+

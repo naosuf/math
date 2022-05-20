@@ -13,6 +13,9 @@ class TagsTableSeeder extends Seeder
     {
         DB::table('tags')->insert([
             [
+                'name' => '微分積分'
+            ],
+            [
                 'name' => '線形代数'
             ],
             [

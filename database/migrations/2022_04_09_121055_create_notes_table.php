@@ -21,6 +21,7 @@ class CreateNotesTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->string('comment');
             $table->integer('favorite');
+            $table->timestamps(0);
         });
     }
 
