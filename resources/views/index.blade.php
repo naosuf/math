@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    
     <!DOCTYPE html>
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
         <head>
@@ -9,6 +9,7 @@
             <title>数学掲示板</title>
             <!-- Fonts -->
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+             <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
         </head>
         <body>
             <h1>数学質問掲示板</h1>
@@ -19,12 +20,15 @@
                 @foreach ($questions as $question)
                     <div class='question'>
                         <h2 class='title'>
-                            <a href = "/{{ $question->id }}"> {{ $question->title}} </a>
+                            <a href = "/question/{{ $question->id }}"> {{ $question->title}} </a>
                         </h2>
                         <p class='body'>{{ $question->body }}</p>
                         <p class='name'>{{ $question->name }}</p>
                     </div>
                 @endforeach
+            </div>
+            <div class='paginate'>
+                {{ $questions->links() }}
             </div>
         </body>
     </html>

@@ -17,6 +17,7 @@ class CreateQuestionTagsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('question_id');
             $table->integer('tag_id');
+            $table->timestamps(0);
         });
     }
 
