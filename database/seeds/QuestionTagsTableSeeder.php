@@ -11,7 +11,7 @@ class QuestionTagsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('question_tags')->insert([
+        DB::table('question_tag')->insert([
             [
                 'question_id' => 1,
                 'tag_id' => 5,

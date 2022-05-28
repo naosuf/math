@@ -17,9 +17,10 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('body');
             $table->integer('user_id')->unsigned();
-            $table->integer('question_id')->unsigned();
-            $table->integer('note_id')->unsigned();
+            $table->integer('question_id')->unsigned()->nullable();
+            $table->integer('note_id')->unsigned()->nullable();
             $table->timestamps(0);
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

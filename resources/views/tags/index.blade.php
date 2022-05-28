@@ -7,9 +7,6 @@
     <div class = "create">
         <a href="/create"> 質問投稿</a>
     </div>
-    <div class = "tags">
-        <a href="/tags"> タグ一覧</a>
-    </div>
     <div class='questions'>
         @foreach ($questions as $question)
             <div class='question'>
