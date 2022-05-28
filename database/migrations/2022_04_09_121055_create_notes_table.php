@@ -22,6 +22,7 @@ class CreateNotesTable extends Migration
             $table->string('comment');
             $table->integer('favorite');
             $table->timestamps(0);
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

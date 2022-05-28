@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             QuestionsTableSeeder::class,
             CommentsTableSeeder::class,
             NotesTableSeeder::class,
-            QuestionUsersTableSeeder::class,
             TagsTableSeeder::class,
             
             

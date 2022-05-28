@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->boolean('status')->default(0);
             $table->timestamps(0);
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

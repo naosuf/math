@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('comment')->nullable();
             $table->timestamps(0);
             $table->rememberToken();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
