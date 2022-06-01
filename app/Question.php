@@ -28,10 +28,14 @@ class Question extends Model
     }
     
     public function tags(){
-        return $this->belongsToMany('App\Question');
+        return $this->belongsToMany('App\Tag');
     }
     
     public function bookmarked(){
         $this->belongsToMany('App\User');
+    }
+    
+    public function question_tags(){
+        return $this->hasMany('App\Question_Tag');
     }
 }
