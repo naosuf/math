@@ -5,7 +5,7 @@
     
     <h1>数学質問掲示板</h1>
     <div class = "create">
-        <a href="/create"> 質問投稿</a>
+        <a href="/question/create"> 質問投稿</a>
     </div>
     <div class = "tags">
         <a href="/tags"> タグ一覧</a>

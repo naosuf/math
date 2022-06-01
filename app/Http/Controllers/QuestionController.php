@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\Tag;
 use App\Question_Tag;
+use App\Question_User;
 use App\Answer;
 use Illuminate\Http\Request;
 use App\User;
@@ -21,13 +22,15 @@ class QuestionController extends Controller
             ]);
     }
     
-    public function show(Question $question, Answer $answer, Comment $comment){
-        #dd($question);
+    public function show(Question $question, Answer $answer, Comment $comment, Tag $tag, Question_User $question_user){
+        #dd($question_user->checkExistance($question));
         return view('show')->with([
             'user_id' => Auth::id(),
             'question' => $question,
             'answers' => $answer->where('question_id',  $question->id)->get(),
             'comments' => $comment->where('question_id', $question->id)->get(),
+            'tags' => $tag,
+            'question_user' => $question_user->getIds($question),
         ]);
     }
     
@@ -46,27 +49,37 @@ class QuestionController extends Controller
         
         #dd($question->id);
         $input_tag = $request['question_tag'];
-        #dd($input_tag);
         foreach($input_tag as $tag){
-            if($tag != 0){
-                $input_question_tag['tag_id'] = $tag;
-                $input_question_tag['question_id'] = $question->id;
-                $question_tag->fill($input_question_tag)->save();
-            }
+            $question_tag = new Question_Tag;
+            $input_question_tag['tag_id'] = $tag;
+            $input_question_tag['question_id'] = $question->id;
+            $question_tag->fill($input_question_tag)->save();
         }
-        return redirect('/');
+        return redirect('/question/'.$question->id);
     }
     
-    public function edit(Question $question){
+    public function edit(Question $question, Tag $tag){
         return view('edit')->with([
             'question' => $question,
+            'oldtags' =>$question->tags()->get(),
+            'tags' => $tag->get(),
         ]);
     }
     
-    public function update(Request $request, Question $question){
+    public function update(Request $request, Question $question, Tag $tag, ){
     $input_question = $request['question'];
+    
     $question->fill($input_question)->save();
     #dd($question);
+    $oldtags = $question->question_tags;
+    $input_tag = $request['question_tag'];
+    for($i = 0; $i<5; $i++){
+        $oldtags[$i]->tag_id = $input_tag['tag_'.$i];
+        
+        #dd($oldtags[4]);
+        $oldtags[$i]->save();
+    };
+    
     
     return redirect('/question/' . $question->id);
     }

@@ -15,4 +15,6 @@ class Question_Tag extends Model
     ];
     
     protected $table = 'question_tag';
+    
+    
 }

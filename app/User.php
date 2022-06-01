@@ -55,6 +55,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Question');
     }
     
+    public function notes(){
+        return $this->hasMany('App\Note');
+    }
+    
     public function getByPaginate(int $limit_count = 5){
          return $this->questions()->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }

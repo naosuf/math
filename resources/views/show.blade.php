@@ -8,8 +8,15 @@
             <div class='question'>
                 <h2 class='title'>{{ $question->title}}</h2>
                 <p class='body'>{{ $question->body }}</p>
+                <p class = "tags">
+                    タグ：    
+                    @foreach($question->tags as $tag)
+                        [<a href = "/tags/{{ $tag->id }}">{{ $tag->name }}</a>]
+                    @endforeach
+                </p>
                 @if ( $user_id == $question->user_id )
-                <form action="/question/{{ $question->id }}" id="form_{{ $question->id }}" method="post" style="display:inline">
+                <a href = "/question/{{ $question->id }}/edit">質問の編集</a>
+                <form action="/question/{{ $question->id }}/delete" id="form_{{ $question->id }}" method="post" style="display:inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit">この質問を削除</button> 
@@ -17,7 +24,7 @@
                 @endif
                 <p>[<a href = "/user/{{ $question->user_id }}">投稿者：{{ $question->user->name }} </a>]</p>
                 @auth
-                    @if(empty(Auth::user()->bookmarks->where('id',  $question->id )))    
+                    @if($question_user == null)
                         <form action = "/question/{{ $question->id }}/bookmark" method = "post" >
                             @csrf
                             <button type="submit">ブックマーク</button>
@@ -49,10 +56,6 @@
             </div>
         </div>
         
-        
-        @if( $user_id == $question->user_id)
-            <a href = "/question/{{ $question->id }}/edit">質問の編集</a>
-        @endif
         
         <div class = "answers">
             @foreach($answers as $answer)

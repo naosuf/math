@@ -8,10 +8,21 @@
             <p class = "comment">{{ $user->comment }}</p>
         </div>
         
+        <div class = "note">
+            <a href = "/note/create">ノート作成</a>
+        </div>
+        
         <div class = "questions">
             <p class = "title">質問一覧</p>
             @foreach($user->questions as $question)
                 <a href = "/question/{{ $question->id }}">{{ $question->title }}</a>
+            @endforeach
+        </div>
+        
+        <div class = "notes">
+            <p class = "title">ノート一覧</p>
+            @foreach($user->notes as $note)
+                <a href = "/note/{{ $note->id }}">{{ $note->title }}</a>
             @endforeach
         </div>
             <div class = "bookmark">
